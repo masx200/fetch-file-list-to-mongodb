@@ -30,5 +30,11 @@
   },
   "directories": {
     "lib": "lib"
-  }
+  },
+  "devDependencies": {},
+  "repository": "git+https://github.com/masx200/fetch-pan-file-list-mongodb.git",
+  "bugs": {
+    "url": "https://github.com/masx200/fetch-pan-file-list-mongodb/issues"
+  },
+  "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme"
 }
