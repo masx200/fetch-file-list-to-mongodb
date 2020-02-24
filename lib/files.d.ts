@@ -1,2 +1,2 @@
-declare const jsonfile: any;
+declare const jsonfile: string;
 export { jsonfile };

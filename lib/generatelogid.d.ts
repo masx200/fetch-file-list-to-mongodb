@@ -1,1 +1,1 @@
-export declare function generatelogid(): any;
+export declare function generatelogid(): string;
