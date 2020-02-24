@@ -1,0 +1,34 @@
+{
+  "type": "module",
+  "name": "fetch-pan-file-list-mongodb",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc ",
+    "start": "node --inspect ./lib/index.js",
+    "parse": "node ./lib/parse-cookie.js"
+  },
+  "keywords": [],
+  "author": "masx200 <34191203+masx200@users.noreply.github.com>",
+  "description": "",
+  "dependencies": {
+    "@masx200/async-task-current-limiter": "^1.0.7",
+    "@types/btoa": "^1.2.3",
+    "@types/cookie": "^0.3.3",
+    "@types/fs-extra": "^8.1.0",
+    "@types/mongoose": "^5.7.1",
+    "@types/node": "^13.7.4",
+    "@types/node-fetch": "^2.5.4",
+    "btoa": "^1.2.1",
+    "cookie": "^0.4.0",
+    "fs-extra": "^8.1.0",
+    "mongoose": "^5.9.2",
+    "node-fetch": "^2.6.0",
+    "typescript": "^3.8.2"
+  },
+  "directories": {
+    "lib": "lib"
+  }
+}
