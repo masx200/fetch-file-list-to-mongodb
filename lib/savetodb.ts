@@ -30,7 +30,7 @@ export default async function(fileslist: Array<PANFILE | PANDIR>, dir: string) {
     });
     await Promise.all([...savefilepro, ...savedirpro]);
     /* 如果有已经保存过目录的信息,则设置finished 为true */
-    await panDircollect.updateMany({ path: dir }, { finished: true });
+    // await panDircollect.updateMany({ path: dir }, { finished: true });
     // .find({ path: dir })
     // .update({})
     // .exec();

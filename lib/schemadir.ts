@@ -22,7 +22,7 @@ const panfileschema = new mongoose.Schema<PANDIR>(
     {
         /* 添加目录路径dir属性 */
         dir: { type: String, index: true, unique: true },
-        finished: { type: Boolean, default: false, index: true, unique: true },
+        // finished: { type: Boolean, default: false, index: true, unique: true },
         dir_empty: Number,
         empty: Number,
         // category: Number,
