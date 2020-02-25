@@ -102,7 +102,7 @@ export async function listonedir(
     } catch (e) {
         console.error("获取文件列表错误,5秒后重试." + dir);
         console.error(e);
-        await new Promise((r) => {
+        await new Promise(r => {
             setTimeout(r, 5000);
         });
         return listonedir(dir, bdstoken, logid);

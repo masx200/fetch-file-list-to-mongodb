@@ -10,7 +10,7 @@ import { generatelogid } from "./generatelogid.js";
 // console.log(fspromise);
 import { getbdstokenanduser } from "./init.js";
 import { listandsave } from "./listandsave.js";
-process.on("unhandledRejection", (err) => {
+process.on("unhandledRejection", err => {
     throw err;
 });
 

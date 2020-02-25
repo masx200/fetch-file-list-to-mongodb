@@ -5,11 +5,12 @@ import { jsonfile } from "./files.js";
 import { limitedfetch as fetch } from "./limitfetch.js";
 const homeurl = `https://pan.baidu.com/disk/home`;
 async function savecookies(setcookie: string) {
-const cooobj={}
+    const cooobj = {};
 
-//可能有多个set-cookie
-     setcookie.split(",").forEach(coo=>Object.assign(cooobj,cookie.parse(coo)) )
-
+    //可能有多个set-cookie
+    setcookie
+        .split(",")
+        .forEach(coo => Object.assign(cooobj, cookie.parse(coo)));
 
     const panobj = await fsextra.readJSON(jsonfile);
     await fsextra.writeJSON(jsonfile, { ...panobj, ...cooobj }, { spaces: 4 });

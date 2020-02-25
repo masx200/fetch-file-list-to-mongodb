@@ -2,7 +2,7 @@ import { listonedir } from "./fetchlistdir.js";
 import savetodb from "./savetodb.js";
 import { PANDIR } from "./schemadir.js";
 import { PANFILE } from "./schemafile.js";
-import { panFilecollect, panDircollect } from './collections.js';
+import { panFilecollect, panDircollect } from "./collections.js";
 
 export async function listandsave(
     dir: string,
@@ -27,13 +27,13 @@ export async function listandsave(
         ] as unknown) as (PANFILE | PANDIR)[]);
         /* 去重处理 */
         const dirslist = ((fileslist as unknown) as (PANFILE | PANDIR)[])
-            .filter((fileobj) => {
+            .filter(fileobj => {
                 return fileobj.isdir;
             })
-            .map((obj) => {
+            .map(obj => {
                 return obj.path;
             }) as string[];
-        const nextpros = dirslist.map(async (dir) => {
+        const nextpros = dirslist.map(async dir => {
             await listandsave(dir, bdstoken, logid);
         });
         await Promise.all(nextpros);
@@ -44,13 +44,13 @@ export async function listandsave(
             console.log(" successfully save data to db ", dir);
         });
         const dirslist = fileslist
-            .filter((fileobj) => {
+            .filter(fileobj => {
                 return fileobj.isdir;
             })
-            .map((obj) => {
+            .map(obj => {
                 return obj.path;
             });
-        const nextpros = dirslist.map(async (dir) => {
+        const nextpros = dirslist.map(async dir => {
             await listandsave(dir, bdstoken, logid);
         });
         await Promise.all([savepro, ...nextpros]);
@@ -60,7 +60,7 @@ export async function listandsave(
 }
 function removeobjrepetition(arr: { path: string; [key: string]: any }[]) {
     const cache = new Map<string, { path: string; [key: string]: any }>();
-    arr.forEach((obj) => {
+    arr.forEach(obj => {
         cache.set(obj.path, obj);
     });
     return [...cache.values()];
