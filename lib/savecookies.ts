@@ -5,7 +5,9 @@ export async function savecookies(setcookie: string) {
     const cooobj = {};
     //可能有多个set-cookie
     setcookie
-        .split([",",";"])
+        .split(",")
+        .map(s => s.split(";"))
+        .flat()
         .forEach(coo => Object.assign(cooobj, cookie.parse(coo)));
     const panobj = await fsextra.readJSON(jsonfile);
     const outputcoo = { ...panobj, ...cooobj };
