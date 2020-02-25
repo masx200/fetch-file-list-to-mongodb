@@ -52,7 +52,10 @@ export async function listandsave(
         const nextpros = dirslist.map(async dir => {
             await listandsave(dir, bdstoken, logid);
         });
-        await Promise.all([savepro, ...nextpros]);
+        // 放防止内存溢出,先保存到数据库
+        await savepro;
+        await Promise.all(nextpros);
+        // await Promise.all([savepro, ...nextpros]);
     }
 
     /* 递归查找子文件夹下的文件 */
