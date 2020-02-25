@@ -8,11 +8,27 @@ const mapfileobjdir = (obj: PANFILE | PANDIR) => {
 };
 export default async function(fileslist: Array<PANFILE | PANDIR>, dir: string) {
     const files = fileslist.filter(fileobj => !fileobj.isdir);
-    const dirs = fileslist.filter(fileobj => fileobj.isdir);
-
-    const savepro1 = panFilecollect.insertMany(files.map(mapfileobjdir));
-    const savepro2 = panDircollect.insertMany(dirs.map(mapfileobjdir));
-    await Promise.all([savepro1, savepro2]);
+    const dirs = fileslist.filter(fileobj => fileobj.isdir === 1);
+    const filetosave = files.map(mapfileobjdir);
+    const dirtosave = dirs.map(mapfileobjdir);
+    // const savepro1 = panFilecollect.updateMany(,files.map(mapfileobjdir),);
+    // const savepro2 = panDircollect.updateMany(dirs.map(mapfileobjdir));
+    // [options.upsert = false] «布尔»如果为true，并且找不到文档，请插入新文档
+    const savefilepro = filetosave.map(obj => {
+        return panFilecollect
+            .updateMany({ path: obj.path }, obj, {
+                upsert: true
+            })
+            .exec();
+    });
+    const savedirpro = dirtosave.map(obj => {
+        return panDircollect
+            .updateMany({ path: obj.path }, obj, {
+                upsert: true
+            })
+            .exec();
+    });
+    await Promise.all([...savefilepro, ...savedirpro]);
     /* 如果有已经保存过目录的信息,则设置finished 为true */
     await panDircollect.updateMany({ path: dir }, { finished: true });
     // .find({ path: dir })
