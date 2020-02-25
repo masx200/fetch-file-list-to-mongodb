@@ -1,7 +1,7 @@
 // import fetch from "node-fetch";
 import fsextra from "fs-extra";
 import { jsonfile } from "./files.js";
-import { objtostrcookie } from "./objtostrcookie";
+import { objtostrcookie } from "./objtostrcookie.js";
 import { limitedfetch as fetch } from "./limitfetch.js";
 import { PANDIR } from "./schemadir.js";
 import { PANFILE } from "./schemafile.js";
