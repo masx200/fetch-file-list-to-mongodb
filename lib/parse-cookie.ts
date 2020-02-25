@@ -3,11 +3,11 @@ import fsextra from "fs-extra";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 // const jsonfile = "./cookies.json";
-import { jsonfile } from "./files.js";
+import { jsonfile,txtfile } from "./files.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const txtfile = path.join(__dirname, "./cookies.txt");
+//const __filename = fileURLToPath(import.meta.url);
+//const __dirname = dirname(__filename);
+//const txtfile = path.join(__dirname, "./cookies.txt");
 (async () => {
     const buf = await fsextra.readFile(txtfile);
     const cookiestr = buf.toString();
