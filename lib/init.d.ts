@@ -1,2 +1,2 @@
-export declare function objtostrcookie(panobj: Record<string, string>): string;
+export declare const homeurl = "https://pan.baidu.com/disk/home";
 export declare function getbdstokenanduser(): Promise<string[]>;

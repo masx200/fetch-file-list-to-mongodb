@@ -5,10 +5,11 @@
     "main": "lib/index.js",
     "license": "MIT",
     "scripts": {
+        "update-cookie": "node ./lib/update-cookie.js",
         "watch": "tsc --watch",
         "build": "tsc ",
-        "start": "node --inspect ./lib/index.js",
-        "parse": "node ./lib/parse-cookie.js",
+        "start": "node  ./lib/index.js",
+        "parse-cookie": "node ./lib/parse-cookie.js",
         "prettier": "prettier ./lib/*.ts ./lib/*.js --write"
     },
     "keywords": [],

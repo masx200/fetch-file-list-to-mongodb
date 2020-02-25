@@ -1,8 +1,7 @@
 // import fetch from "node-fetch";
 import fsextra from "fs-extra";
 import { jsonfile } from "./files.js";
-// import cookie from "cookie";
-import { objtostrcookie } from "./init.js";
+import { objtostrcookie } from "./objtostrcookie";
 import { limitedfetch as fetch } from "./limitfetch.js";
 import { PANDIR } from "./schemadir.js";
 import { PANFILE } from "./schemafile.js";
@@ -169,4 +168,3 @@ export async function listonedir(
 // "unlist":0,"isdir":1,"dir_empty":1,"oper_id":0,"server_ctime":1582087140,"local_mtime":1582087140,
 // "size":0,"share":0,"server_mtime":1582087140,"path":"\/\u6211\u7684\u8d44\u6e90",
 // "local_ctime":1582087140,"empty":0,"fs_id":130798388676430},
-
