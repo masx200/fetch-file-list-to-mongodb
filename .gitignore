@@ -1,4 +1,5 @@
-cookie.txt
+cookies.txt
+cookies.json
 
 # Logs
 logs
@@ -105,5 +106,5 @@ dist
 # TernJS port file
 .tern-port
 
-userdata/*
+userdata/
 userdata
