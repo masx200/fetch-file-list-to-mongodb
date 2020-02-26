@@ -67,7 +67,7 @@ async function fetchdelete(filestoremove: string[]): Promise<any[]> {
             const data = await req.json();
             const info = data?.info;
             if (Array.isArray(info) && info.length) {
-                console.log(info);
+                // console.log(info);
                 return info;
             } else {
                 throw Error("data error " + JSON.stringify(data));
