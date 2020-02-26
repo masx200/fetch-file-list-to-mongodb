@@ -5,6 +5,7 @@
   "main": "lib/index.js",
   "license": "MIT",
   "scripts": {
+    "save-cookie": "node ./lib/save-cookie.js",
     "update-cookie": "node ./lib/update-cookie.js",
     "watch": "tsc --watch",
     "build": "tsc ",
