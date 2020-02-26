@@ -89,6 +89,7 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
     }
     /* 先获取文件列表 */
     const filedirs = Array.from(new Set(rawfiles.map(f => posix.dirname(f))));
+    console.log("获取文件信息", filedirs);
     const filepool: string[] = (
         await Promise.all(
             filedirs.map(async f => {
@@ -99,7 +100,6 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
         )
     ).flat();
 
-    console.log("获取文件信息", filepool);
     /* 先把不存在的文件从删除列表中去除 */
     const filestoremove = rawfiles.filter(f => {
         return filepool.includes(f);
