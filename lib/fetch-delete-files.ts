@@ -30,11 +30,15 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
     /* 先获取文件列表 */
     const filedirs = Array.from(new Set(rawfiles.map(f => posix.dirname(f))));
     const filepool: string[] = (
-        await Promise.all(filedirs.map(f => listonedir(f)))
-    )
-        .flat()
-        .filter(o => !o.isdir)
-        .map(o => o.path);
+        await Promise.all(
+            filedirs.map(async f => {
+                return (await listonedir(f))
+                    .filter(o => !o.isdir)
+                    .map(o => o.path);
+            })
+        )
+    ).flat();
+
     console.log("获取文件信息", filepool);
     /* 先把不存在的文件从删除列表中去除 */
     const filestoremove = rawfiles.filter(f => {
