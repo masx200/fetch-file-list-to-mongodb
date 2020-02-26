@@ -16,7 +16,7 @@ function slicearray<T>(data: Array<T>, count: number): Array<T>[] {
     }
     return result;
 }
-export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
+async function fetchdelete(filestoremove: string[]): Promise<any[]> {
     if (!PANENV.bdstoken || !PANENV.user) {
         let [bdstoken, user] = await getbdstokenanduser();
         PANENV.bdstoken = bdstoken;
@@ -26,33 +26,6 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
         const panobj = await fsextra.readJSON(jsonfile);
         let coostr = objtostrcookie(panobj);
         PANENV.cookie = coostr;
-    }
-    /* 先获取文件列表 */
-    const filedirs = Array.from(new Set(rawfiles.map(f => posix.dirname(f))));
-    const filepool: string[] = (
-        await Promise.all(
-            filedirs.map(async f => {
-                return (await listonedir(f))
-                    .filter(o => !o.isdir)
-                    .map(o => o.path);
-            })
-        )
-    ).flat();
-
-    console.log("获取文件信息", filepool);
-    /* 先把不存在的文件从删除列表中去除 */
-    const filestoremove = rawfiles.filter(f => {
-        return filepool.includes(f);
-    });
-    const listlimit = 200;
-    if (listlimit < filestoremove.length) {
-        return (
-            await Promise.all(
-                slicearray(filestoremove, listlimit).map(list => {
-                    return deletefiles(filestoremove);
-                })
-            )
-        ).flat();
     }
     const params = {
         opera: "delete",
@@ -101,6 +74,47 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
         throw Error(
             "fetch failed " + req.status + " " + req.statusText + " " + urlhref
         );
+    }
+}
+export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
+    if (!PANENV.bdstoken || !PANENV.user) {
+        let [bdstoken, user] = await getbdstokenanduser();
+        PANENV.bdstoken = bdstoken;
+        PANENV.user = user;
+    }
+    if (!PANENV.cookie) {
+        const panobj = await fsextra.readJSON(jsonfile);
+        let coostr = objtostrcookie(panobj);
+        PANENV.cookie = coostr;
+    }
+    /* 先获取文件列表 */
+    const filedirs = Array.from(new Set(rawfiles.map(f => posix.dirname(f))));
+    const filepool: string[] = (
+        await Promise.all(
+            filedirs.map(async f => {
+                return (await listonedir(f))
+                    .filter(o => !o.isdir)
+                    .map(o => o.path);
+            })
+        )
+    ).flat();
+
+    console.log("获取文件信息", filepool);
+    /* 先把不存在的文件从删除列表中去除 */
+    const filestoremove = rawfiles.filter(f => {
+        return filepool.includes(f);
+    });
+    const listlimit = 200;
+    if (listlimit < filestoremove.length) {
+        return (
+            await Promise.all(
+                slicearray(filestoremove, listlimit).map(list => {
+                    return fetchdelete(list);
+                })
+            )
+        ).flat();
+    } else {
+        return fetchdelete(filestoremove);
     }
 }
 /* 错误码-9是文件不存在,
