@@ -121,7 +121,10 @@ export async function deletefiles(rawfiles: Array<string>): Promise<void> {
         return filepool.includes(f);
     });
     console.log("需要删除的文件", filestoremove);
-    await slicedelete(filestoremove);
+    /* 如果没有需要删除的文件,则不需要执行 */
+    if (filestoremove.length) {
+        await slicedelete(filestoremove);
+    }
 }
 const listlimit = 200;
 async function slicedelete(filestoremove: string[]) {
