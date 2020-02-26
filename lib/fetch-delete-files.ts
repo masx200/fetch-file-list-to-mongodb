@@ -65,6 +65,7 @@ async function fetchdelete(filestoremove: string[]): Promise<any[]> {
         const data = await req.json();
         const info = data?.info;
         if (Array.isArray(info) && info.length) {
+            console.log(info);
             return info;
         } else {
             throw Error("data error " + JSON.stringify(data));
@@ -118,6 +119,19 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
         return fetchdelete(filestoremove);
     }
 }
+// 删除失败的代码是111
+// {
+//     "errno": 111,
+//     "path": "/!我的图片-20190604/微博美图暴力切割-2020-01-05 225127/微博美图cosplay-暴力切割图片-2020-01-05 225127-8(2).rar_20200108075529/8/dc26db61b2faab81d1c5f5734fc3a97d.webp"
+//   },
+// /*
+// 删除成功的代码是0
+// {
+//     "errno": 0,
+//     "path": "/!我的图片-20190604/微博美图合集-20191229/半次元cosplay频道-20191229-5.rar_20200108075443/5/452699b2cfe50d35ee2884ba81ed3dcb.webp"
+//   },
+
+//   */
 /* 错误码-9是文件不存在,
 错误码31034是服务器拒绝服务
 */
