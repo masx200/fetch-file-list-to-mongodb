@@ -20,25 +20,21 @@ export type PANDIR = {
 
 const panfileschema = new mongoose.Schema<PANDIR>(
     {
-        /* 添加目录路径dir属性 */
-        dir: { type: String, index: true, unique: true },
-        // finished: { type: Boolean, default: false, index: true, unique: true },
+        dir: {
+            type: String,
+            index: true
+        },
         dir_empty: Number,
         empty: Number,
-        // category: Number,
         fs_id: Number,
         isdir: Number,
-        // local_ctime: Number,
-        // local_mtime: Number,
-
-        // oper_id: Number,
-        path: { type: String, unique: true, index: true },
-        // server_ctime: Number,
+        path: {
+            type: String,
+            unique: true,
+            index: true
+        },
         server_filename: String,
-        // server_mtime: Number,
-        // share: Number,
         size: Number
-        // unlist: Number
     },
     { autoIndex: true }
 );

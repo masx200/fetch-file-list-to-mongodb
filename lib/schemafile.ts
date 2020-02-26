@@ -18,22 +18,23 @@ export type PANFILE = {
 
 const panfileschema = new mongoose.Schema<PANFILE>(
     {
-        /* 添加目录路径dir属性 */
-        dir: { type: String, unique: true, index: true /* , index: true  */ },
-        // category: Number,
+        dir: {
+            type: String,
+            index: true
+        },
         fs_id: Number,
         isdir: Number,
-        // local_ctime: Number,
-        // local_mtime: Number,
-        md5: { type: String, unique: true, index: true /* , index: true */ },
-        // oper_id: Number,
-        path: { type: String, unique: true, index: true },
-        // server_ctime: Number,
+        md5: {
+            type: String,
+            index: true
+        },
+        path: {
+            type: String,
+            unique: true,
+            index: true
+        },
         server_filename: String,
-        // server_mtime: Number,
-        // share: Number,
         size: Number
-        // unlist: Number
     },
     { autoIndex: true }
 );
