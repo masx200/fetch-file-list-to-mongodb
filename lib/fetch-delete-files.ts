@@ -1,4 +1,5 @@
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
+import { limitedfetch as fetch } from "./limitfetch.js";
 import fsextra from "fs-extra";
 import { PANENV } from "./index.js";
 import { getbdstokenanduser } from "./init.js";
@@ -24,7 +25,7 @@ export async function deletefiles(files: Array<string>): Promise<any[]> {
         let coostr = objtostrcookie(panobj);
         PANENV.cookie = coostr;
     }
-    const listlimit = 500;
+    const listlimit = 100;
     if (listlimit < files.length) {
         return (
             await Promise.all(
