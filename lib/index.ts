@@ -15,15 +15,18 @@ process.on("unhandledRejection", err => {
 });
 
 (async () => {
-    const connection = mongoose.connect("mongodb://127.0.0.1/pan", {
+    
+    const [bdstoken, user] = await getbdstokenanduser();
+const connection = mongoose.connect("mongodb://127.0.0.1/", {
         useUnifiedTopology: true,
-        useNewUrlParser: true
+        useNewUrlParser: true,
+useCreateIndex:true
+,
+dbName:"pan_"+user
     });
     connection.then(() => {
         console.log("mongodb conneted");
     });
-    const [bdstoken, user] = await getbdstokenanduser();
-
     const logid = generatelogid();
     console.log("登陆成功");
     console.log(JSON.stringify({ bdstoken, user, logid }));
