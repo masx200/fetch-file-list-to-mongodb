@@ -1,3 +1,4 @@
+import { posix } from "path";
 // import fetch from "node-fetch";
 import { limitedfetch as fetch } from "./limitfetch.js";
 import fsextra from "fs-extra";
@@ -5,6 +6,7 @@ import { PANENV } from "./index.js";
 import { getbdstokenanduser } from "./init.js";
 import { jsonfile } from "./files.js";
 import { objtostrcookie } from "./objtostrcookie.js";
+import { listonedir } from "./fetchlistdir.js";
 const operationurl = `https://pan.baidu.com/api/filemanager`;
 /* 每次不能太多2000个1000个500个 */
 function slicearray<T>(data: Array<T>, count: number): Array<T>[] {
@@ -14,7 +16,7 @@ function slicearray<T>(data: Array<T>, count: number): Array<T>[] {
     }
     return result;
 }
-export async function deletefiles(files: Array<string>): Promise<any[]> {
+export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
     if (!PANENV.bdstoken || !PANENV.user) {
         let [bdstoken, user] = await getbdstokenanduser();
         PANENV.bdstoken = bdstoken;
@@ -25,12 +27,25 @@ export async function deletefiles(files: Array<string>): Promise<any[]> {
         let coostr = objtostrcookie(panobj);
         PANENV.cookie = coostr;
     }
+    /* 先获取文件列表 */
+    const filedirs = Array.from(new Set(rawfiles.map(f => posix.dirname(f))));
+    const filepool: string[] = (
+        await Promise.all(filedirs.map(f => listonedir(f)))
+    )
+        .flat()
+        .filter(o => !o.isdir)
+        .map(o => o.path);
+    console.log("获取文件信息", filepool);
+    /* 先把不存在的文件从删除列表中去除 */
+    const filestoremove = rawfiles.filter(f => {
+        return filepool.includes(f);
+    });
     const listlimit = 200;
-    if (listlimit < files.length) {
+    if (listlimit < filestoremove.length) {
         return (
             await Promise.all(
-                slicearray(files, listlimit).map(list => {
-                    return deletefiles(list);
+                slicearray(filestoremove, listlimit).map(list => {
+                    return deletefiles(filestoremove);
                 })
             )
         ).flat();
@@ -49,7 +64,8 @@ export async function deletefiles(files: Array<string>): Promise<any[]> {
     const listapi = new URL(operationurl);
     listapi.search = String(new URLSearchParams(params));
     const urlhref = String(listapi);
-    const body = "filelist=" + encodeURIComponent(JSON.stringify(files));
+    const body =
+        "filelist=" + encodeURIComponent(JSON.stringify(filestoremove));
     const headers = {
         Host: "pan.baidu.com",
         Connection: "keep-alive",
@@ -83,6 +99,10 @@ export async function deletefiles(files: Array<string>): Promise<any[]> {
         );
     }
 }
+/* 错误码-9是文件不存在,
+错误码31034是服务器拒绝服务
+*/
+/* {"errno":-9,"request_id":1320659711141136779} */
 // {
 //   errno: 0,
 //   info: [],
