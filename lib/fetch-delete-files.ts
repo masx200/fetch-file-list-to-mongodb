@@ -131,7 +131,7 @@ async function slicedelete(filestoremove: string[]) {
     if (newfiles.length) {
         /* 延时10秒 */
         await new Promise(r => setTimeout(r, 10000));
-        await fetchdelete(newfiles);
+        await slicedelete(newfiles);
     }
 }
 // 删除失败的代码是111
