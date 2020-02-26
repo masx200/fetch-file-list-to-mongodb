@@ -149,7 +149,7 @@ async function slicedelete(filestoremove: string[]) {
         await deletefiles(newfiles);
     }
 }
-// 删除失败的代码是111
+// 删除失败的代码是111,但是也可能删除成功
 // {
 //     "errno": 111,
 //     "path": "/!我的图片-20190604/微博美图暴力切割-2020-01-05 225127/微博美图cosplay-暴力切割图片-2020-01-05 225127-8(2).rar_20200108075529/8/dc26db61b2faab81d1c5f5734fc3a97d.webp"
