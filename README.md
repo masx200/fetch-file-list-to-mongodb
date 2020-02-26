@@ -50,7 +50,7 @@ mongod --dbpath /path/to/your/db
 
 获得如下内容
 
-```
+```txt
 GET /disk/home HTTP/1.1
 Host: pan.baidu.com
 Connection: keep-alive
