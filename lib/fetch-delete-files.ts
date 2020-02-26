@@ -51,6 +51,7 @@ export async function deletefiles(files: Array<string>) {
     const req = await fetch(urlhref, { method: "POST", body, headers });
     if (req.ok) {
         const data = await req.json();
+
         return data;
     } else {
         throw Error(
@@ -58,6 +59,18 @@ export async function deletefiles(files: Array<string>) {
         );
     }
 }
+// {
+//   errno: 0,
+//   info: [],
+//   request_id: 1320023046338866700,
+//   taskid: 823150949751162
+// }
+// /* {
+//   errno: 3,
+//   info: [],
+//   request_id: 1319996614583890200,
+//   num_limit: 2000
+// } */
 // POST /api/filemanager?opera=delete&async=2&onnest=fail&channel=chunlei&web=1&app_id=250528&bdstoken=dd1601843e05e55609ed49d51dabba42&logid=MTU4MjcxMzgwODE4MjAuODAwNjQzMDEzMzE1OTA1NQ==&clienttype=0 HTTP/1.1
 // Host: pan.baidu.com
 // Connection: keep-alive
