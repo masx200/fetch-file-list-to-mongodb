@@ -25,7 +25,7 @@ export async function deletefiles(files: Array<string>): Promise<any[]> {
         let coostr = objtostrcookie(panobj);
         PANENV.cookie = coostr;
     }
-    const listlimit = 100;
+    const listlimit = 300;
     if (listlimit < files.length) {
         return (
             await Promise.all(
