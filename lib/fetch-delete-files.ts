@@ -77,7 +77,7 @@ async function fetchdelete(filestoremove: string[]): Promise<any[]> {
         );
     }
 }
-export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
+export async function deletefiles(rawfiles: Array<string>): Promise<void> {
     if (!PANENV.bdstoken || !PANENV.user) {
         let [bdstoken, user] = await getbdstokenanduser();
         PANENV.bdstoken = bdstoken;
@@ -106,9 +106,13 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
         return filepool.includes(f);
     });
     console.log("需要删除的文件", filestoremove);
-    const listlimit = 200;
+    await slicedelete(filestoremove);
+}
+const listlimit = 200;
+async function slicedelete(filestoremove: string[]) {
+    let oprearesults;
     if (listlimit < filestoremove.length) {
-        return (
+        oprearesults = (
             await Promise.all(
                 slicearray(filestoremove, listlimit).map(list => {
                     return fetchdelete(list);
@@ -116,7 +120,18 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
             )
         ).flat();
     } else {
-        return fetchdelete(filestoremove);
+        oprearesults = await fetchdelete(filestoremove);
+    }
+    console.log(oprearesults);
+    const newfiles = oprearesults
+        .filter(o => o?.errno === 111)
+        .map(o => o?.path);
+    /* 把删除失败的文件再次删除 */
+    console.log("删除失败的文件,10秒后再次尝试删除", newfiles);
+    if (newfiles.length) {
+        /* 延时10秒 */
+        await new Promise(r => setTimeout(r, 10000));
+        await fetchdelete(newfiles);
     }
 }
 // 删除失败的代码是111
