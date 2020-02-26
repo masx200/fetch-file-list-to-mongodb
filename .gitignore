@@ -1,5 +1,6 @@
-cookies.txt
-cookies.json
+
+userdata/cookies.txt
+userdata/cookies.json
 
 # Logs
 logs
