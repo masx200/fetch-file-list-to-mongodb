@@ -104,6 +104,7 @@ export async function deletefiles(rawfiles: Array<string>): Promise<any[]> {
     const filestoremove = rawfiles.filter(f => {
         return filepool.includes(f);
     });
+    console.log("需要删除的文件", filestoremove);
     const listlimit = 200;
     if (listlimit < filestoremove.length) {
         return (
