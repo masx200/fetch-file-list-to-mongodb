@@ -5,40 +5,48 @@ import { objtostrcookie } from "./objtostrcookie.js";
 import { limitedfetch as fetch } from "./limitfetch.js";
 import { PANDIR } from "./schemadir.js";
 import { PANFILE } from "./schemafile.js";
+// import { bdstoken, logid, user } from "./index.js";
+import { getbdstokenanduser } from "./init.js";
+import { PANENV } from "./index.js";
 const listurl = `https://pan.baidu.com/api/list`;
-let coostr: string | undefined;
+// export let coostr: string | undefined;
 function gettimestamp() {
     return String(new Date().getTime());
 }
 export async function listonedir(
-    dir: string,
-    bdstoken: string,
-    logid: string
+    dir: string
+    // bdstoken: string,
+    // logid: string
 ): Promise<Array<PANFILE | PANDIR>> {
-    try {
-        const params = {
-            order: "time",
-            desc: "1",
-            showempty: "0",
-            web: "1",
-            page: "1",
-            dir: dir,
-            // t: "0.5937695130287173",
-            channel: "chunlei",
-            app_id: "250528",
-            bdstoken: bdstoken,
-            logid: logid,
-            clienttype: "0",
-            startLogTime: gettimestamp()
-        };
-        if (!coostr) {
-            const panobj = await fsextra.readJSON(jsonfile);
-            coostr = objtostrcookie(panobj);
-        }
+    if (!PANENV.bdstoken || !PANENV.user) {
+        let [bdstoken, user] = await getbdstokenanduser();
+        PANENV.bdstoken = bdstoken;
+        PANENV.user = user;
+    }
+    if (!PANENV.cookie) {
+        const panobj = await fsextra.readJSON(jsonfile);
+        let coostr = objtostrcookie(panobj);
+        PANENV.cookie = coostr;
+    }
+    const params = {
+        order: "time",
+        desc: "1",
+        showempty: "0",
+        web: "1",
+        page: "1",
+        dir: dir,
 
-        const listapi = new URL(listurl);
-        listapi.search = String(new URLSearchParams(params));
-        const urlhref = String(listapi);
+        channel: "chunlei",
+        app_id: "250528",
+        bdstoken: PANENV.bdstoken,
+        logid: PANENV.logid,
+        clienttype: "0",
+        startLogTime: gettimestamp()
+    };
+    const listapi = new URL(listurl);
+    listapi.search = String(new URLSearchParams(params));
+    const urlhref = String(listapi);
+    try {
         const req = await fetch(urlhref, {
             headers: {
                 "Accept-Encoding": "gzip, deflate, br",
@@ -54,37 +62,22 @@ export async function listonedir(
                 "sec-fetch-mode": "cors",
                 "sec-fetch-site": "same-origin",
                 "x-requested-with": "XMLHttpRequest",
-                cookie: coostr
+                cookie: PANENV.cookie
             },
 
             body: undefined,
             method: "GET"
         });
         if (req.ok) {
-            // console.log(req.headers);
-            // const setcookie = req.headers.get("set-cookie");
-            // if (setcookie) {
-            //     const cooobj = cookie.parse(setcookie);
-            //     const panobj = await fsextra.readJSON(jsonfile);
-            //     await fsextra.writeJSON(
-            //         jsonfile,
-            //         { ...panobj, ...cooobj },
-            //         { spaces: 4 }
-            //     );
-            // }
             const data = await req.json();
             const errno = data?.errno;
+            const listdata = data?.list;
             if (
                 typeof errno === "number" &&
                 errno === 0 &&
-                Array.isArray(data?.list)
+                Array.isArray(listdata)
             ) {
-                const list = data?.list;
-                // if (Array.isArray(list)) {
-                return list;
-                // } else {
-                //     throw Error("data error " + data);
-                // }
+                return listdata;
             } else {
                 throw Error("data error " + JSON.stringify(data));
             }
@@ -104,7 +97,7 @@ export async function listonedir(
         await new Promise(r => {
             setTimeout(r, 5000);
         });
-        return listonedir(dir, bdstoken, logid);
+        return listonedir(dir /* , bdstoken, logid */);
     }
 }
 
@@ -168,3 +161,57 @@ export async function listonedir(
 // "unlist":0,"isdir":1,"dir_empty":1,"oper_id":0,"server_ctime":1582087140,"local_mtime":1582087140,
 // "size":0,"share":0,"server_mtime":1582087140,"path":"\/\u6211\u7684\u8d44\u6e90",
 // "local_ctime":1582087140,"empty":0,"fs_id":130798388676430},
+// fetch(
+//     "https://pan.baidu.com/api/list?dir=%2F&bdstoken=dd1601843e05e55609ed49d51dabba42&logid=MTU4MjUwODQ1NTk5MzAuOTUyNTQxODE2MTU2MjE1NA==&num=100&order=time&desc=1&clienttype=0&showempty=0&web=1&page=1&channel=chunlei&web=1&app_id=250528",
+//     {
+//         headers: {
+//             accept: "*/*",
+//             "accept-language":
+//                 "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+//             "sec-fetch-dest": "empty",
+//             "sec-fetch-mode": "cors",
+//             "sec-fetch-site": "same-origin",
+//             cookie:
+//                 "BAIDUID=FB4E6D238362ED1ED4E544B9850BEDC0:FG=1; BIDUPSID=FB4E6D238362ED1ED4E544B9850BEDC0; PSTM=1549849081; PANWEB=1; BDUSS=XBzT1B4MVBGVlU2Sjc5d1lKb34zSmx5VnpQTHlZN09OcFV0Q0h2b1V1YW5XeVZlSVFBQUFBJCQAAAAAAAAAAAEAAADPRYIEbWFzeDIwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKfO~V2nzv1dY; STOKEN=e8edfa007b1d000fb1531ec76617ec0b95b615575fbacc337788e78925bfcd4f; SCRC=72ccb728ee6dacf2ba5938fd8d1351ca; cflag=13%3A3; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1582435770,1582439059,1582458059,1582507482; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1582507482; PANPSC=15151495637702843426%3AKkwrx6t0uHDoTFmRfJVxoMJKt428qvGu%2B%2FtD9xp6N5gr2wqYbSNJzAjY5VzUlGl43nyaTe1ucW7KGWKyBagKrmlUQ2zB5GaPDtTCc6ZqWjGu2cUHmw770eVcjWJ40Swp0v29HoOyBxO7W09FU%2BvrLt8NRd7EA5d%2B2fNZfjs7wBY%2FcoIBUQpA2juoAeCl9TBG"
+//         },
+//         referrer: "https://pan.baidu.com/disk/home?",
+//         referrerPolicy: "no-referrer-when-downgrade",
+//         body: null,
+//         method: "GET",
+//         mode: "cors"
+//     }
+// );
+// fetch(
+//     "https://pan.baidu.com/api/list?order=time&desc=1&showempty=0&web=1&page=1&num=100&dir=%2F%E6%88%91%E7%9A%84%E5%AE%89%E5%8D%93%E5%BA%94%E7%94%A8%2Fapps&t=0.6913972743505943&channel=chunlei&web=1&app_id=250528&bdstoken=dd1601843e05e55609ed49d51dabba42&logid=MTU4MjUwNzUxMzI5MTAuOTA2MDQyODMxOTE4MTkxOQ==&clienttype=0&startLogTime=1582507513291",
+//     {
+//         headers: {
+//             accept: "application/json, text/javascript, */*; q=0.01",
+//             "accept-language":
+//                 "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+//             "sec-fetch-dest": "empty",
+//             "sec-fetch-mode": "cors",
+//             "sec-fetch-site": "same-origin",
+//             "x-requested-with": "XMLHttpRequest",
+//             cookie:
+//                 "BAIDUID=FB4E6D238362ED1ED4E544B9850BEDC0:FG=1; BIDUPSID=FB4E6D238362ED1ED4E544B9850BEDC0; PSTM=1549849081; PANWEB=1; BDUSS=XBzT1B4MVBGVlU2Sjc5d1lKb34zSmx5VnpQTHlZN09OcFV0Q0h2b1V1YW5XeVZlSVFBQUFBJCQAAAAAAAAAAAEAAADPRYIEbWFzeDIwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKfO~V2nzv1dY; STOKEN=e8edfa007b1d000fb1531ec76617ec0b95b615575fbacc337788e78925bfcd4f; SCRC=72ccb728ee6dacf2ba5938fd8d1351ca; cflag=13%3A3; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1582435770,1582439059,1582458059,1582507482; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1582507482; PANPSC=17104741590485773119%3AKkwrx6t0uHDoTFmRfJVxoMJKt428qvGu%2B%2FtD9xp6N5gr2wqYbSNJzAjY5VzUlGl4V4y6jLL5Rb3KGWKyBagKrmlUQ2zB5GaPDtTCc6ZqWjGu2cUHmw770eVcjWJ40Swp0v29HoOyBxO7W09FU%2BvrLt8NRd7EA5d%2B2fNZfjs7wBY%2FcoIBUQpA2juoAeCl9TBG"
+//         },
+//         referrer: "https://pan.baidu.com/disk/home?",
+//         referrerPolicy: "no-referrer-when-downgrade",
+//         body: null,
+//         method: "GET",
+//         mode: "cors"
+//     }
+// );
+// /* GET /api/list?dir=%2F&bdstoken=dd1601843e05e55609ed49d51dabba42&logid=MTU4MjUxNTU0OTg3MjAuNzA5NzgyMTkyMDQzODMxNA==&num=100&order=time&desc=1&clienttype=0&showempty=0&web=1&page=1&channel=chunlei&web=1&app_id=250528 HTTP/1.1
+// Host: pan.baidu.com
+// Connection: keep-alive
+// User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.17 Safari/537.36 Edg/81.0.416.12
+// Accept: */*
+// Sec-Fetch-Site: same-origin
+// Sec-Fetch-Mode: cors
+// Sec-Fetch-Dest: empty
+// Referer: https://pan.baidu.com/disk/home?
+// Accept-Encoding: gzip, deflate, br
+// Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6
+// Cookie: BAIDUID=FB4E6D238362ED1ED4E544B9850BEDC0:FG=1; BIDUPSID=FB4E6D238362ED1ED4E544B9850BEDC0; PSTM=1549849081; PANWEB=1; BDUSS=XBzT1B4MVBGVlU2Sjc5d1lKb34zSmx5VnpQTHlZN09OcFV0Q0h2b1V1YW5XeVZlSVFBQUFBJCQAAAAAAAAAAAEAAADPRYIEbWFzeDIwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKfO~V2nzv1dY; STOKEN=e8edfa007b1d000fb1531ec76617ec0b95b615575fbacc337788e78925bfcd4f; SCRC=72ccb728ee6dacf2ba5938fd8d1351ca; cflag=13%3A3; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1582435770,1582439059,1582458059,1582507482; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1582508457; PANPSC=17979515407805339668%3AKkwrx6t0uHDoTFmRfJVxoMJKt428qvGu%2B%2FtD9xp6N5gr2wqYbSNJzAjY5VzUlGl4ehK7255rgBXKGWKyBagKrmlUQ2zB5GaPDtTCc6ZqWjGu2cUHmw770eVcjWJ40Swp0v29HoOyBxO7W09FU%2BvrLt8NRd7EA5d%2B2fNZfjs7wBY%2FcoIBUQpA2juoAeCl9TBG
+//  */
