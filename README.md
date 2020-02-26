@@ -4,7 +4,11 @@
 
 获取目录的文件信息,模拟浏览器的脚本操作来发送网络请求
 
-还提供了直接获取指定目录下的所有文件信息的功能
+还提供了直接获取指定目录下的所有文件信息的功能,若遇到网络错误自动重试
+
+还提供了直接删除指定的批量文件的功能,多次尝试,判断要删除的文件是否存在
+
+网盘对于每次删除操作的文件数有限制,故只能拆分多次尝试删除
 
 # 使用方法
 
@@ -75,9 +79,16 @@ yarn run save-cookie "BAIDUID=xxx; BIDUPSID=xxx; PSTM=xxx; PANWEB=xxx; BDUSS=xxx
 yarn run parse-cookie
 ```
 
-# 直接获取指定目录下的所有文件信息
+# 直接获取指定目录下的文件信息,若遇到网络错误自动重试
 
 ```js
 import { listonedir } from "./lib/fetchlistdir.js";
 listonedir("/path/to/your/dir").then(console.log);
+```
+
+# 直接删除指定的批量文件,多次尝试,判断要删除的文件是否存在
+
+```js
+import { deletefiles } from "./lib/fetch-delete-files.js";
+deletefiles(["/path/to/your/file1", "/path/to/your/file2"]).then(console.log);
 ```
