@@ -4,7 +4,7 @@ import { limitedfetch as fetch } from "./limitfetch.js";
 import { homeurl } from "./init.js";
 import { objtostrcookie } from "./objtostrcookie.js";
 import { savecookies } from "./savecookies.js";
-export async function gethomehtmlandupdatecookie() {
+export async function gethomehtmlandupdatecookie(): Promise<string> {
     const panobj = await fsextra.readJSON(jsonfile);
     const coostr = objtostrcookie(panobj);
     const req = await fetch(homeurl, {
