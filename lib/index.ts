@@ -18,7 +18,8 @@ process.on("unhandledRejection", err => {
     
     const [bdstoken, user] = await getbdstokenanduser();
 const connection = mongoose.connect("mongodb://127.0.0.1/", {
-        useUnifiedTopology: true,
+poolSize:10,
+  useUnifiedTopology: true,
         useNewUrlParser: true,
 useCreateIndex:true
 ,
