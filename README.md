@@ -73,8 +73,12 @@ Cookie: BAIDUID=xxx; pan_login_way=xxx; PANWEB=xxx; BIDUPSID=xxx; PSTM=xxx; cfla
 
 ![./sshot-2020-02-26-[13-50-52].png](https://raw.githubusercontent.com/masx200/fetch-pan-file-list-mongodb/master/sshot-2020-02-26-%5B13-50-52%5D.png)
 
-# 使用前先保存 cookie
+# 使用前先保存 cookie,并解析 cookie
 
 ```shell
 yarn run save-cookie "BAIDUID=xxx; BIDUPSID=xxx; PSTM=xxx; PANWEB=xxx; BDUSS=xxx; STOKEN=xxx; SCRC=xxx; cflag=xxx; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=xxx; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=xxx; PANPSC=xxx"
+```
+
+```shell
+yarn run parse-cookie
 ```
