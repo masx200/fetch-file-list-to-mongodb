@@ -142,9 +142,11 @@ async function slicedelete(filestoremove: string[]) {
         .filter(o => o?.errno === 111)
         .map(o => o?.path);
     /* 把删除失败的文件再次删除 */
-    console.log("删除失败的文件,10秒后再次尝试删除", newfiles);
+
     if (newfiles.length) {
         /* 延时10秒 */
+
+        console.log("删除失败的文件,10秒后再次尝试删除", newfiles);
         await new Promise(r => setTimeout(r, 10000));
         await deletefiles(newfiles);
     }
