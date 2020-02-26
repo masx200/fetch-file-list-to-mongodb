@@ -1,1 +1,1 @@
-export declare function deletefiles(files: Array<string>): Promise<any>;
+export declare function deletefiles(files: Array<string>): Promise<any[]>;

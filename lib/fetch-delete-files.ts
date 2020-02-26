@@ -5,7 +5,15 @@ import { getbdstokenanduser } from "./init.js";
 import { jsonfile } from "./files.js";
 import { objtostrcookie } from "./objtostrcookie.js";
 const operationurl = `https://pan.baidu.com/api/filemanager`;
-export async function deletefiles(files: Array<string>) {
+/* 每次不能太多2000个1000个500个 */
+function slicearray<T>(data: Array<T>, count: number): Array<T>[] {
+    var result = [];
+    for (var i = 0; i < data.length; i += count) {
+        result.push(data.slice(i, i + count));
+    }
+    return result;
+}
+export async function deletefiles(files: Array<string>): Promise<any[]> {
     if (!PANENV.bdstoken || !PANENV.user) {
         let [bdstoken, user] = await getbdstokenanduser();
         PANENV.bdstoken = bdstoken;
@@ -15,6 +23,16 @@ export async function deletefiles(files: Array<string>) {
         const panobj = await fsextra.readJSON(jsonfile);
         let coostr = objtostrcookie(panobj);
         PANENV.cookie = coostr;
+    }
+    const listlimit = 500;
+    if (listlimit < files.length) {
+        return (
+            await Promise.all(
+                slicearray(files, listlimit).map(list => {
+                    return deletefiles(list);
+                })
+            )
+        ).flat();
     }
     const params = {
         opera: "delete",
@@ -51,8 +69,13 @@ export async function deletefiles(files: Array<string>) {
     const req = await fetch(urlhref, { method: "POST", body, headers });
     if (req.ok) {
         const data = await req.json();
-
-        return data;
+        const info = data?.info;
+        if (Array.isArray(info) && info.length) {
+            return info;
+        } else {
+            throw Error("data error " + JSON.stringify(data));
+        }
+        // return data;
     } else {
         throw Error(
             "fetch failed " + req.status + " " + req.statusText + " " + urlhref
