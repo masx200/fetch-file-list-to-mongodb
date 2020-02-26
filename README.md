@@ -2,6 +2,8 @@
 
 批量获取百度网盘所有文件信息保存到 `MongoDB` 数据库的脚本
 
+还提供了直接获取指定目录下的所有文件信息的功能
+
 # 使用方法
 
 ## 安装 `node_modules`
@@ -69,4 +71,11 @@ yarn run save-cookie "BAIDUID=xxx; BIDUPSID=xxx; PSTM=xxx; PANWEB=xxx; BDUSS=xxx
 
 ```shell
 yarn run parse-cookie
+```
+
+# 直接获取指定目录下的所有文件信息
+
+```js
+import { listonedir } from "./lib/fetchlistdir.js";
+listonedir("/path/to/your/dir").then(console.log);
 ```
