@@ -33,7 +33,10 @@ const panfileschema = new mongoose.Schema<PANDIR>(
             unique: true,
             index: true
         },
-        server_filename: String,
+        server_filename: {
+            type: String,
+            index: true
+        },
         size: Number
     },
     { autoIndex: true }
