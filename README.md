@@ -71,7 +71,7 @@ Cookie: BAIDUID=xxx; pan_login_way=xxx; PANWEB=xxx; BIDUPSID=xxx; PSTM=xxx; cfla
 
 提取出其中`Cookie:`后的内容为 cookie
 
-(["./"sshot-2020-02-26-[13-50-52].png])
+()["./sshot-2020-02-26-[13-50-52].png"]
 
 # 使用前先保存 cookie
 
