@@ -2,12 +2,12 @@
     "type": "module",
     "name": "fetch-file-list-to-mongodb",
     "version": "1.0.0",
-    "main": "lib/index.js",
+    "main": "lib/start.js",
     "license": "MIT",
     "scripts": {
         "watch": "tsc --watch",
         "build": "tsc ",
-        "start": "node  ./lib/start.js",
+        "start": "node  ./lib/cli.js",
         "prettier": "prettier ./lib/*.ts *.json *.md --write"
     },
     "keywords": [],
@@ -15,7 +15,7 @@
     "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
     "dependencies": {
         "@masx200/async-task-current-limiter": "^1.0.7",
-        "@masx200/fetch-baidu-pan-files": "^1.0.0",
+        "@masx200/fetch-baidu-pan-files": "^1.0.1",
         "@types/btoa": "^1.2.3",
         "@types/cookie": "^0.3.3",
         "@types/fs-extra": "^8.1.0",

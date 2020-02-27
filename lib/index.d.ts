@@ -1,1 +1,1 @@
-export declare const start: () => Promise<never>;
+export declare const homepath = "/";

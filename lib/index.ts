@@ -1,31 +1,7 @@
-import { initPANENV } from "@masx200/fetch-baidu-pan-files";
-const homepath = `/`;
+export const homepath = `/`;
 
-import mongoose from "mongoose";
 import process from "process";
 
-import { listandsave ,} from "./listandsave.js";
 process.on("unhandledRejection", err => {
     throw err;
 });
-
-export const start = async () => {
-    const panenv=await initPANENV()
-    const connection = mongoose.connect("mongodb://127.0.0.1/", {
-        poolSize: 10,
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true,
-        dbName: "pan_" + panenv.user
-    });
-    connection.then(() => {
-        console.log("mongodb conneted");
-    });
-
-    console.log("登陆成功");
-    console.log(JSON.stringify(panenv));
-    await listandsave(homepath /* , bdstoken, logid */);
-
-    console.log("文件数据库全部建立完成");
-    process.exit();
-};

@@ -9,7 +9,7 @@ export async function listandsave(
     {
         const fileslist = await listonedir(dir /* , bdstoken, logid */);
         console.log(" successfully fetch file list ", dir /* , fileslist */);
-        const savepro = savetodb(fileslist/* , dir */).then(() => {
+        const savepro = savetodb(fileslist /* , dir */).then(() => {
             console.log(" successfully save data to db ", dir);
         });
         const dirslist = fileslist
