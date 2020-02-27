@@ -6,7 +6,9 @@ import { PANFILE } from "./schemafile.js";
 const mapfileobjdir = (obj: PANFILE | PANDIR) => {
     return { ...obj, dir: posix.dirname(obj.path) };
 };
-export default async function(fileslist: Array<PANFILE | PANDIR>, dir: string) {
+export default async function(
+    fileslist: Array<PANFILE | PANDIR> /* , dir: string */
+) {
     const files = fileslist.filter(fileobj => !fileobj.isdir);
     const dirs = fileslist.filter(fileobj => fileobj.isdir === 1);
     const filetosave = files.map(mapfileobjdir);
