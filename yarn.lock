@@ -14,6 +14,26 @@
   resolved "https://registry.npmjs.org/@masx200/event-emitter-target/-/event-emitter-target-1.1.5.tgz#d176c743eb67dca7d65984293c19a56284d55e03"
   integrity sha512-+SIaAsoFZ0UioQRrQ0Yf7prpfchsx4G4KunDFsSJSo3haVBk2IXOI4PdE+Mg6hiSelSHoxgIf5MUbjlglMpnxQ==
 
+"@masx200/fetch-baidu-pan-files@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@masx200/fetch-baidu-pan-files/-/fetch-baidu-pan-files-1.0.0.tgz#638eaf5f4053f1f971b3d5d3929fd20f53559b49"
+  integrity sha512-GwTDbay183BuTqTDnY2P/pCvJqyV6rHVfPoHrcIIuWN9dYEratwL/naNrPpB5QoMaZLq1toPnYJdhJ5lZQGnxw==
+  dependencies:
+    "@masx200/async-task-current-limiter" "^1.0.7"
+    "@types/btoa" "^1.2.3"
+    "@types/cookie" "^0.3.3"
+    "@types/fs-extra" "^8.1.0"
+    "@types/mongoose" "^5.7.1"
+    "@types/node" "^13.7.4"
+    "@types/node-fetch" "^2.5.4"
+    btoa "^1.2.1"
+    cookie "^0.4.0"
+    fs-extra "^8.1.0"
+    mongoose "^5.9.2"
+    node-fetch "^2.6.0"
+    prettier "^1.19.1"
+    typescript "^3.8.2"
+
 "@types/bson@*":
   version "4.0.1"
   resolved "https://registry.npmjs.org/@types/bson/-/bson-4.0.1.tgz#2bfc80819e7055b76d5496d5344ed23e5d12bbb2"
