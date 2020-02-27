@@ -1,4 +1,4 @@
-# fetch-pan-files-mongodb
+# fetch-file-list-to-mongodb
 
 批量获取百度网盘所有文件信息保存到 `MongoDB` 数据库的脚本
 

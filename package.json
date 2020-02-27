@@ -1,6 +1,6 @@
 {
     "type": "module",
-    "name": "fetch-pan-file-list-mongodb",
+    "name": "fetch-file-list-to-mongodb",
     "version": "1.0.0",
     "main": "lib/index.js",
     "license": "MIT",
