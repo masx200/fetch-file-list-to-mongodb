@@ -1,1 +1,2 @@
-export declare const homepath = "/";
+import { start } from "./start.js";
+export { start };

@@ -1,8 +1,9 @@
 {
+    "types": "lib/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
     "version": "1.0.3",
-    "main": "lib/start.js",
+    "main": "lib/index.js",
     "license": "MIT",
     "scripts": {
         "watch": "tsc --watch",
