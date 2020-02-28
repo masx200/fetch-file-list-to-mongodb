@@ -19,7 +19,7 @@ export default async function(
     //防止内存溢出   把map改为reduce
     const savefilepro = filetosave.reduce(async (prev, obj) => {
         await prev;
-        return panFilecollect
+        return await panFilecollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true
             })
@@ -27,7 +27,7 @@ export default async function(
     }, Promise.resolve());
     const savedirpro = dirtosave.reduce(async (prev, obj) => {
         await prev;
-        return panDircollect
+        return await panDircollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true
             })
@@ -41,18 +41,4 @@ export default async function(
             .exec();
     });*/
     await Promise.all([savefilepro, savedirpro]);
-    /* 如果有已经保存过目录的信息,则设置finished 为true */
-    // await panDircollect.updateMany({ path: dir }, { finished: true });
-    // .find({ path: dir })
-    // .update({})
-    // .exec();
-    // await Promise.all(
-    //     fileslist.map(async (fileobj) => {
-    //         if (fileobj.isdir) {
-    //             await panDir.create(fileobj);
-    //         } else {
-    //             await panFile.create(fileobj);
-    //         }
-    //     })
-    // );
 }
