@@ -16,7 +16,7 @@
     "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
     "dependencies": {
         "@masx200/async-task-current-limiter": "^1.0.7",
-        "@masx200/fetch-baidu-pan-files": "^1.0.6",
+        "@masx200/fetch-baidu-pan-files": "^1.0.7",
         "@types/btoa": "^1.2.3",
         "@types/cookie": "^0.3.3",
         "@types/fs-extra": "^8.1.0",
