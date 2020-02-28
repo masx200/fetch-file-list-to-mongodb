@@ -1,7 +1,7 @@
 {
     "type": "module",
-    "name": "fetch-file-list-to-mongodb",
-    "version": "1.0.2",
+    "name": "@masx200/fetch-file-list-to-mongodb",
+    "version": "1.0.3",
     "main": "lib/start.js",
     "license": "MIT",
     "scripts": {
