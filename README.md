@@ -4,6 +4,12 @@
 
 批量获取百度网盘所有文件信息保存到 `MongoDB` 数据库的脚本
 
+保存数据到数据库的位置
+
+dbname 是'pan\_'+用户名
+
+collection 是'pandir'和"panfile"
+
 百度网盘批量清理重复文件计划
 
 https://github.com/masx200/baidu-pan-delete-repeated-files
