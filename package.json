@@ -1,8 +1,9 @@
 {
+    "bin": "./lib/cli.js",
     "types": "lib/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "main": "lib/index.js",
     "license": "MIT",
     "scripts": {
