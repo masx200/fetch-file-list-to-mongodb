@@ -19,7 +19,7 @@ export default async function (
     //防止内存溢出   把map改为reduce
     const savefilepro = filetosave.reduce(async (prev, obj) => {
         await prev;
-        console.log("保存到file数据库", obj);
+        console.log("保存到file数据库", obj.path);
         return await panFilecollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true,
@@ -28,7 +28,7 @@ export default async function (
     }, Promise.resolve());
     const savedirpro = dirtosave.reduce(async (prev, obj) => {
         await prev;
-        console.log("保存到dir数据库", obj);
+        console.log("保存到dir数据库", obj.path);
         return await panDircollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true,
