@@ -6,7 +6,7 @@
 
 保存数据到数据库的位置
 
-dbname 是'pan\_'+用户名
+dbname 是'baidupan'
 
 collection 是'pandir'和"panfile"
 
