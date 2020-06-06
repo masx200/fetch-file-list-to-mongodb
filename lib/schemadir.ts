@@ -22,7 +22,7 @@ const panfileschema = new mongoose.Schema(
     {
         dir: {
             type: String,
-            index: true
+            index: true,
         },
         dir_empty: Number,
         empty: Number,
@@ -31,13 +31,13 @@ const panfileschema = new mongoose.Schema(
         path: {
             type: String,
             unique: true,
-            index: true
+            index: true,
         },
         server_filename: {
             type: String,
-            index: true
+            index: true,
         },
-        size: Number
+        size: Number,
     },
     { autoIndex: true }
 );

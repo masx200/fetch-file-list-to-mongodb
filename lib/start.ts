@@ -12,7 +12,7 @@ export async function start() {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useCreateIndex: true,
-        dbName: "baidupan"
+        dbName: "baidupan",
     });
     connection.then(() => {
         console.log("mongodb conneted");

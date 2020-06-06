@@ -6,11 +6,11 @@ import { PANFILE } from "./schemafile.js";
 const mapfileobjdir = (obj: PANFILE | PANDIR) => {
     return { ...obj, dir: posix.dirname(obj.path) };
 };
-export default async function(
+export default async function (
     fileslist: Array<PANFILE | PANDIR> /* , dir: string */
 ) {
-    const files = fileslist.filter(fileobj => !fileobj.isdir);
-    const dirs = fileslist.filter(fileobj => fileobj.isdir === 1);
+    const files = fileslist.filter((fileobj) => !fileobj.isdir);
+    const dirs = fileslist.filter((fileobj) => fileobj.isdir === 1);
     const filetosave = files.map(mapfileobjdir);
     const dirtosave = dirs.map(mapfileobjdir);
     // const savepro1 = panFilecollect.updateMany(,files.map(mapfileobjdir),);
@@ -22,7 +22,7 @@ export default async function(
         console.log("保存到file数据库", obj);
         return await panFilecollect
             .updateMany({ path: obj.path }, obj, {
-                upsert: true
+                upsert: true,
             })
             .exec();
     }, Promise.resolve());
@@ -31,7 +31,7 @@ export default async function(
         console.log("保存到dir数据库", obj);
         return await panDircollect
             .updateMany({ path: obj.path }, obj, {
-                upsert: true
+                upsert: true,
             })
             .exec();
     }, Promise.resolve());

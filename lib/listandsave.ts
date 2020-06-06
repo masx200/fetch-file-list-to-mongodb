@@ -13,13 +13,13 @@ export async function listandsave(
             console.log(" successfully save data to db ", dir);
         });
         const dirslist = fileslist
-            .filter(fileobj => {
+            .filter((fileobj) => {
                 return fileobj.isdir;
             })
-            .map(obj => {
+            .map((obj) => {
                 return obj.path;
             });
-        const nextpros = dirslist.map(async dir => {
+        const nextpros = dirslist.map(async (dir) => {
             await listandsave(dir /* , bdstoken, logid */);
         });
         // 放防止内存溢出,先保存到数据库
