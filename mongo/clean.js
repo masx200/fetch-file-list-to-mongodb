@@ -2,6 +2,6 @@
 //@ts-nocheck
 // use baidupan;
 
-panfile=db.panfile;
+panfile = db.panfile;
 
-panfile.deleteMany({})
+panfile.deleteMany({});
