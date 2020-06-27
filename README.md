@@ -53,3 +53,9 @@ sudo apt install mongodb
 ```shell
 mongod --dbpath /path/to/your/db
 ```
+
+# 清除数据库的百度网盘文件信息
+
+```shell
+mongo  mongodb://127.0.0.1:27017/baidupan ./mongo/clean.js
+```
