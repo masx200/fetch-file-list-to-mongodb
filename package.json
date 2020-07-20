@@ -1,51 +1,49 @@
 {
-    "publishConfig": {
-        "registry": "https://registry.npmjs.com"
-    },
-    "bin": "./lib/cli.js",
-    "types": "lib/index.d.ts",
-    "type": "module",
-    "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "1.1.7",
-    "main": "lib/index.js",
-    "license": "MIT",
-    "scripts": {
-        "watch": "tsc --watch",
-        "build": "tsc ",
-        "start": "node  ./lib/cli.js",
-        "prettier": "prettier ./lib/*.ts *.json *.md --write **/*.js"
-    },
-    "keywords": [],
-    "author": "masx200 <34191203+masx200@users.noreply.github.com>",
-    "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
-    "dependencies": {
-        "@masx200/async-task-current-limiter": "^1.0.8",
-        "@masx200/fetch-baidu-pan-files": "^1.2.12",
-        "@types/btoa": "^1.2.3",
-        "@types/cookie": "^0.4.0",
-        "@types/fs-extra": "^9.0.1",
-        "@types/mongoose": "^5.7.28",
-        "@types/node": "^14.0.14",
-        "@types/node-fetch": "^2.5.7",
-        "btoa": "^1.2.1",
-        "cookie": "^0.4.1",
-        "fs-extra": "^9.0.1",
-        "mongodb": "^3.5.9",
-        "mongoose": "^5.9.20"
-        
-    },
-    "devDependencies": {
-
-"prettier": "^2.0.5",
-        "tslib": "^2.0.0",
-        "typescript": "^3.9.5"
-},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/masx200/fetch-pan-file-list-mongodb.git"
-    },
-    "bugs": {
-        "url": "https://github.com/masx200/fetch-pan-file-list-mongodb/issues"
-    },
-    "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme"
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com"
+  },
+  "bin": "./lib/cli.js",
+  "types": "lib/index.d.ts",
+  "type": "module",
+  "name": "@masx200/fetch-file-list-to-mongodb",
+  "version": "1.1.7",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc ",
+    "start": "node  ./lib/cli.js",
+    "prettier": "prettier ./lib/*.ts *.json *.md --write **/*.js"
+  },
+  "keywords": [],
+  "author": "masx200 <34191203+masx200@users.noreply.github.com>",
+  "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
+  "dependencies": {
+    "@masx200/async-task-current-limiter": "^1.0.8",
+    "@masx200/fetch-baidu-pan-files": "^1.2.12",
+    "@types/btoa": "^1.2.3",
+    "@types/cookie": "^0.4.0",
+    "@types/fs-extra": "^9.0.1",
+    "@types/mongoose": "^5.7.28",
+    "@types/node": "^14.0.14",
+    "@types/node-fetch": "^2.5.7",
+    "btoa": "^1.2.1",
+    "cookie": "^0.4.1",
+    "fs-extra": "^9.0.1",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.25"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.5",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masx200/fetch-pan-file-list-mongodb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/masx200/fetch-pan-file-list-mongodb/issues"
+  },
+  "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme"
 }
