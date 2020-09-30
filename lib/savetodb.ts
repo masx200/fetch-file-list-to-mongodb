@@ -10,9 +10,9 @@ export default async function (
     fileslist: Array<PANFILE | PANDIR> /* , dir: string */
 ) {
     const files = fileslist.filter((fileobj) => !fileobj.isdir);
-   // const dirs = fileslist.filter((fileobj) => fileobj.isdir === 1);
+    // const dirs = fileslist.filter((fileobj) => fileobj.isdir === 1);
     const filetosave = files.map(mapfileobjdir);
-   // const dirtosave = dirs.map(mapfileobjdir);
+    // const dirtosave = dirs.map(mapfileobjdir);
     // const savepro1 = panFilecollect.updateMany(,files.map(mapfileobjdir),);
     // const savepro2 = panDircollect.updateMany(dirs.map(mapfileobjdir));
     // [options.upsert = false] «布尔»如果为true，并且找不到文档，请插入新文档
@@ -26,7 +26,7 @@ export default async function (
             })
             .exec();
     }, Promise.resolve());
-   /* const savedirpro = dirtosave.reduce(async (prev, obj) => {
+    /* const savedirpro = dirtosave.reduce(async (prev, obj) => {
         await prev;
         console.log("保存到dir数据库", obj.path);
         return await panDircollect
@@ -36,6 +36,6 @@ export default async function (
             .exec();
     }, Promise.resolve());
 */
-   // await Promise.all([savefilepro, savedirpro]);
-await savefilepro
+    // await Promise.all([savefilepro, savedirpro]);
+    await savefilepro;
 }
