@@ -59,3 +59,23 @@ mongod --dbpath /path/to/your/db
 ```shell
 mongo  mongodb://127.0.0.1:27017/baidupan ./mongo/clean.js
 ```
+
+
+
+# 命令行示例
+
+可选参数 `db`:本地数据库的名称 `string`
+
+可选参数 `collect`:数据库中集合的名称 `string`
+
+可选参数 `mongourl`：mongodb 数据库的 URL
+
+例如： "mongodb://127.0.0.1:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false"
+
+
+
+
+```shell
+fetch-file-list-to-mongodb --db=baidupan  --collect=panfile --mongourl=mongodb://127.0.0.1:27017
+
+```
