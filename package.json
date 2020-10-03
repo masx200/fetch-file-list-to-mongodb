@@ -7,7 +7,7 @@
     "types": "lib/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "main": "lib/index.js",
     "license": "MIT",
     "scripts": {
