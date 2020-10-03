@@ -22,6 +22,12 @@ https://github.com/masx200/mongodb-file-find-md5-repeat
 
 # 使用方法
 
+# 全局安装
+
+```
+yarn global add @masx200/fetch-file-list-to-mongodb
+```
+
 ## 安装 `node_modules`
 
 ```shell
