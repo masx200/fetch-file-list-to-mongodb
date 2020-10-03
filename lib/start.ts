@@ -7,7 +7,7 @@ import { listandsave } from "./listandsave.js";
 import opts from "./opts.js";
 export async function start() {
     // const panenv = await initPANENV();
-    const connection = mongoose.connect("mongodb://127.0.0.1/", {
+    const connection = mongoose.connect(opts.mongourl, {
         poolSize: 10,
         useUnifiedTopology: true,
         useNewUrlParser: true,

@@ -1,7 +1,7 @@
 #!/usr/bin/env mongo
-//@ts-nocheck
+ //@ts-nocheck
 // use baidupan;
 
-panfile = db.panfile;
+collect = db.panfile;
 
-panfile.deleteMany({});
+collect.deleteMany({});

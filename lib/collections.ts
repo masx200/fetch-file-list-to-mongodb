@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
 // import schemadir from "./schemadir.js";
 import schemafile from "./schemafile.js";
-export const panFilecollect = mongoose.model("panfile", schemafile, "panfile");
+import opts from "./opts.js";
+export const panFilecollect = mongoose.model(
+    opts.collect,
+    schemafile,
+    opts.collect
+);
 panFilecollect.createIndexes().then(() => {
     console.log("索引建立成功");
 });
