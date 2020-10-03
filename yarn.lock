@@ -14,10 +14,10 @@
   resolved "https://registry.npm.taobao.org/@masx200/event-emitter-target/download/@masx200/event-emitter-target-1.1.7.tgz#11757a805314886ecb54a5aa5fab6815b33b0913"
   integrity sha1-EXV6gFMUiG7LVKWqX6toFbM7CRM=
 
-"@masx200/fetch-baidu-pan-files-api@^2":
-  version "2.0.0"
-  resolved "https://registry.npm.taobao.org/@masx200/fetch-baidu-pan-files-api/download/@masx200/fetch-baidu-pan-files-api-2.0.0.tgz#c79140c68a43edcd0eb0384d2a9fa75451e120e1"
-  integrity sha1-x5FAxopD7c0OsDhNKp+nVFHhIOE=
+"@masx200/fetch-baidu-pan-files-api@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/@masx200/fetch-baidu-pan-files-api/download/@masx200/fetch-baidu-pan-files-api-2.0.1.tgz#074de035562485c52324ae823fa7964a1d8b8634"
+  integrity sha1-B03gNVYkhcUjJK6CP6eWSh2LhjQ=
   dependencies:
     "@masx200/async-task-current-limiter" "^1.0.9"
     "@masx200/mini-cli-args-parser" "^1.0.2"
