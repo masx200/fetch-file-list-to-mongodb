@@ -1,5 +1,5 @@
 #!/usr/bin/env mongo
- //@ts-nocheck
+//@ts-nocheck
 // use baidupan;
 
 collect = db.panfile;
