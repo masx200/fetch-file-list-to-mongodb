@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import process from "process";
 // import { homepath } from "./index.js";
 import { listandsave } from "./listandsave.js";
-
+import opts from "./opts.js";
 export async function start() {
     // const panenv = await initPANENV();
     const connection = mongoose.connect("mongodb://127.0.0.1/", {
@@ -12,7 +12,7 @@ export async function start() {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useCreateIndex: true,
-        dbName: "baidupan",
+        dbName: opts.db,
     });
     connection.then(() => {
         console.log("mongodb conneted");

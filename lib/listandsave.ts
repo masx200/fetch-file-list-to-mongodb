@@ -1,4 +1,4 @@
-import { listonedir } from "@masx200/fetch-baidu-pan-files";
+import { listonedir } from "@masx200/fetch-baidu-pan-files-api";
 import savetodb from "./savetodb.js";
 
 export async function listandsave(
