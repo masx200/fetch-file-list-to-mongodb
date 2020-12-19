@@ -27,14 +27,16 @@
         "@types/fs-extra": "^9.0.1",
         "@types/mongoose": "^5.7.36",
         "@types/node": "^14.11.2",
-        "btoa": "^1.2.1",
+        
         "cookie": "^0.4.1",
         "fs-extra": "^9.0.1",
         "mongodb": "^3.6.2",
-        "mongoose": "^5.10.7"
+        "mongoose": "^5.11.8"
     },
     "devDependencies": {
         "prettier": "^2.1.2",
+"mquery":"3.2.3",
+"btoa": "^1.2.1",
         "tslib": "^2.0.1",
         "typescript": "^4.0.3"
     },
