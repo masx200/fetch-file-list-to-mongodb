@@ -42,6 +42,10 @@ FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaS
     /* 递归查找子文件夹下的文件 */
 }
 async function listfolderandsave(dirslist: string[]) {
+    if (!dirslist.length) {
+        return;
+    }
+
     console.log(dirslist);
     for (let folder of dirslist) {
         await listandsaveall(folder);
@@ -49,6 +53,10 @@ async function listfolderandsave(dirslist: string[]) {
 }
 const parallelnum = 4;
 async function parallellistfolder(dirslist: string[]) {
+    if (!dirslist.length) {
+        return;
+    }
+
     console.log(dirslist);
     const listarrs = slicearray(
         dirslist,
