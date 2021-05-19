@@ -2,7 +2,7 @@ import currentlimiter from "@masx200/async-task-current-limiter";
 import { listonedir } from "@masx200/fetch-baidu-pan-files-api";
 import { savetodb } from "./savetodb.js";
 import { slicearray } from "./slicearray.js";
-const listlimiter = currentlimiter(10);
+const listlimiter = currentlimiter(8);
 
 const listandsave = listlimiter.asyncwrap(rawlistandsave);
 async function rawlistandsave(
@@ -43,7 +43,7 @@ async function listfolderandsave(dirslist: string[]) {
         await listandsave(folder);
     }
 }
-const parallelnum = 4;
+const parallelnum = 3;
 async function parallellistfolder(dirslist: string[]) {
     const listarrs = slicearray(
         dirslist,
