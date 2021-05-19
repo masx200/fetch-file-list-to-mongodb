@@ -17,15 +17,24 @@ export async function savetodb(
     // const savepro2 = panDircollect.updateMany(dirs.map(mapfileobjdir));
     // [options.upsert = false] «布尔»如果为true，并且找不到文档，请插入新文档
     //防止内存溢出   把map改为reduce
-    const savefilepro = filetosave.reduce(async (prev: Promise<any>, obj) => {
-        await prev;
-        console.log("成功保存到file数据库", obj.path);
-        return await panFilecollect
+    // const savefilepro = filetosave.reduce(async (prev: Promise<any>, obj) => {
+    //     await prev;
+    //     console.log("成功保存到file数据库", obj.path);
+    //     return await panFilecollect
+    //         .updateMany({ path: obj.path }, obj, {
+    //             upsert: true,
+    //         })
+    //         .exec();
+    // }, Promise.resolve());
+    for (let obj of filetosave) {
+        console.log("正在保存到file数据库", obj.path);
+        await panFilecollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true,
             })
             .exec();
-    }, Promise.resolve());
+        console.log("成功保存到file数据库", obj.path);
+    }
     /* const savedirpro = dirtosave.reduce(async (prev, obj) => {
         await prev;
         console.log("保存到dir数据库", obj.path);
@@ -37,5 +46,5 @@ export async function savetodb(
     }, Promise.resolve());
 */
     // await Promise.all([savefilepro, savedirpro]);
-    await savefilepro;
+    // await savefilepro;
 }
