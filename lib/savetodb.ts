@@ -6,7 +6,7 @@ import { PANFILE } from "./schemafile.js";
 const mapfileobjdir = (obj: PANFILE | PANDIR) => {
     return { ...obj, dir: posix.dirname(obj.path) };
 };
-export default async function (
+export default async function savetodb(
     fileslist: Array<PANFILE | PANDIR> /* , dir: string */
 ) {
     const files = fileslist.filter((fileobj) => !fileobj.isdir);
@@ -19,7 +19,7 @@ export default async function (
     //防止内存溢出   把map改为reduce
     const savefilepro = filetosave.reduce(async (prev: Promise<any>, obj) => {
         await prev;
-        console.log("保存到file数据库", obj.path);
+        console.log("成功保存到file数据库", obj.path);
         return await panFilecollect
             .updateMany({ path: obj.path }, obj, {
                 upsert: true,
