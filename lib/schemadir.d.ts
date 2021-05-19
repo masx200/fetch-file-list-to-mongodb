@@ -16,5 +16,9 @@ export declare type PANDIR = {
     size: number;
     unlist: number;
 };
-declare const panfileschema: mongoose.Schema<any>;
+declare const panfileschema: mongoose.Schema<
+    mongoose.Document<any, any>,
+    mongoose.Model<any, any, any>,
+    undefined
+>;
 export default panfileschema;

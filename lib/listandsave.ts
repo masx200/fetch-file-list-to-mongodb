@@ -12,7 +12,7 @@ export async function listandsave(
         const savepro = savetodb(fileslist /* , dir */).then(() => {
             console.log("successfully save data to db ", dir);
         });
-        
+
         // const nextpros = dirslist.map(async (dir) => {
         //     await listandsave(dir /* , bdstoken, logid */);
         // });
@@ -36,11 +36,4 @@ FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaS
     }
 
     /* 递归查找子文件夹下的文件 */
-}
-function slicearray(data, count) {
-    var result = [];
-    for (var i = 0; i < data.length; i += count) {
-        result.push(data.slice(i, i + count));
-    }
-    return result;
 }

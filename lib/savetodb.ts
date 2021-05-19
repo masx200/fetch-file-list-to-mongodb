@@ -17,7 +17,7 @@ export default async function (
     // const savepro2 = panDircollect.updateMany(dirs.map(mapfileobjdir));
     // [options.upsert = false] «布尔»如果为true，并且找不到文档，请插入新文档
     //防止内存溢出   把map改为reduce
-    const savefilepro = filetosave.reduce(async (prev, obj) => {
+    const savefilepro = filetosave.reduce(async (prev: Promise<any>, obj) => {
         await prev;
         console.log("保存到file数据库", obj.path);
         return await panFilecollect
