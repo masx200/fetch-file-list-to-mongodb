@@ -1,1 +1,3 @@
-export declare function listandsave(dir: string): Promise<void>;
+declare const listandsave: typeof rawlistandsave;
+declare function rawlistandsave(dir: string): Promise<void>;
+export { listandsave };
