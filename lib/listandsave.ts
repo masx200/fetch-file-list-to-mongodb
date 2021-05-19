@@ -50,6 +50,7 @@ async function parallellistfolder(dirslist: string[]) {
         dirslist,
         Math.round(dirslist.length / parallelnum)
     );
+    console.log(listarrs);
     await Promise.all(listarrs.map((dir) => listfolderandsave(dir)));
     //await listfolderandsave(dirslist);
 }
