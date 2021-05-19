@@ -60,7 +60,8 @@ async function parallellistfolder(dirslist: string[]) {
     console.log(dirslist);
     const listarrs = slicearray(
         dirslist,
-        Math.round(dirslist.length / parallelnum)
+        Math.max(1, Math.round(dirslist.length / parallelnum))
+        // 如果count=0,则死循环了
     );
     // console.log(listarrs);
     await Promise.all(listarrs.map((dir) => listfolderandsave(dir)));
