@@ -43,8 +43,9 @@ async function listfolderandsave(dirslist: string[]) {
         await listandsave(folder);
     }
 }
-const parallelnum = 3;
+const parallelnum = 4;
 async function parallellistfolder(dirslist: string[]) {
+    console.log(dirslist);
     const listarrs = slicearray(
         dirslist,
         Math.round(dirslist.length / parallelnum)
