@@ -3,7 +3,7 @@ const homepath = `/`;
 import mongoose from "mongoose";
 import process from "process";
 // import { homepath } from "./index.js";
-import { listandsave } from "./listandsave.js";
+import { listandsaveall } from "./listandsave.js";
 import opts from "./opts.js";
 export async function start() {
     // const panenv = await initPANENV();
@@ -19,7 +19,7 @@ export async function start() {
     });
     console.log("数据库登陆成功");
     // console.log(JSON.stringify(panenv));
-    await listandsave(homepath /* , bdstoken, logid */);
+    await listandsaveall(homepath /* , bdstoken, logid */);
     console.log("文件数据库全部建立完成");
     process.exit();
 }

@@ -1,3 +1,2 @@
-declare const listandsave: typeof rawlistandsave;
-declare function rawlistandsave(dir: string): Promise<void>;
-export { listandsave };
+declare function listandsaveall(dir: string): Promise<void>;
+export { listandsaveall };

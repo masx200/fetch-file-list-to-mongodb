@@ -4,8 +4,12 @@ import { savetodb } from "./savetodb.js";
 import { slicearray } from "./slicearray.js";
 const listlimiter = currentlimiter(4);
 
-const listandsave = listlimiter.asyncwrap(rawlistandsave);
-async function rawlistandsave(
+async function listandsaveall(dir: string) {
+    const dirslist = await limitedlistandsavesingle(dir);
+    await parallellistfolder(dirslist);
+}
+const limitedlistandsavesingle = listlimiter.asyncwrap(rawlistandsavesingle);
+async function rawlistandsavesingle(
     dir: string
     /*  bdstoken: string,
     logid: string */
@@ -34,14 +38,13 @@ async function rawlistandsave(
 
 FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory */
 
-    await parallellistfolder(dirslist);
-
+    return dirslist;
     /* 递归查找子文件夹下的文件 */
 }
 async function listfolderandsave(dirslist: string[]) {
     console.log(dirslist);
     for (let folder of dirslist) {
-        await listandsave(folder);
+        await listandsaveall(folder);
     }
 }
 const parallelnum = 4;
@@ -55,4 +58,4 @@ async function parallellistfolder(dirslist: string[]) {
     await Promise.all(listarrs.map((dir) => listfolderandsave(dir)));
     //await listfolderandsave(dirslist);
 }
-export { listandsave };
+export { listandsaveall };
