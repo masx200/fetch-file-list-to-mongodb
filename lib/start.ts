@@ -14,10 +14,10 @@ export async function start() {
         useCreateIndex: true,
         dbName: opts.db,
     });
-    connection.then(() => {
+    await connection.then(() => {
         console.log("mongodb conneted");
     });
-    console.log("登陆成功");
+    console.log("数据库登陆成功");
     // console.log(JSON.stringify(panenv));
     await listandsave(homepath /* , bdstoken, logid */);
     console.log("文件数据库全部建立完成");
