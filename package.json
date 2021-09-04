@@ -52,5 +52,5 @@
     "bugs": {
         "url": "https://github.com/masx200/fetch-pan-file-list-mongodb/issues"
     },
-    "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme"
+    "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme","resolutions":{"mpath":"0.8.4"}
 }
