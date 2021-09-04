@@ -1981,8 +1981,8 @@ mongoose@^6.0.4:
 
 mpath@0.8.3, mpath@0.8.4:
   version "0.8.4"
-  resolved "https://registry.nlark.com/mpath/download/mpath-0.8.4.tgz#6b566d9581621d9e931dd3b142ed3618e7599313"
-  integrity sha1-a1ZtlYFiHZ6THdOxQu02GOdZkxM=
+  resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.8.4.tgz#6b566d9581621d9e931dd3b142ed3618e7599313"
+  integrity sha512-DTxNZomBcTWlrMW76jy1wvV37X/cNNxPW1y2Jzd4DZkAaC5ZGsm8bfGfNOthcDuRJujXLqiuS6o3Tpy0JEoh7g==
 
 mquery@3.2.5:
   version "3.2.5"
