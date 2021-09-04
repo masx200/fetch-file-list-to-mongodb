@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+// #!/usr/bin/env node
 
 import parseargs from "@masx200/mini-cli-args-parser";
 import opts from "./opts.js";

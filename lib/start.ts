@@ -8,10 +8,12 @@ import opts from "./opts.js";
 export async function start() {
     // const panenv = await initPANENV();
     const connection = mongoose.connect(opts.mongourl, {
-        poolSize: 10,
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-        useCreateIndex: true,
+        maxPoolSize: 10,
+        autoIndex: true,
+        autoCreate: true,
+        // useUnifiedTopology: true,
+        // useNewUrlParser: true,
+        // useCreateIndex: true,
         dbName: opts.db,
     });
     await connection.then(() => {
