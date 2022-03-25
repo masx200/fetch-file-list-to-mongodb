@@ -2,7 +2,7 @@ cookies.txt
 cookies.json
 userdata/cookies.txt
 userdata/cookies.json
-
+dist
 # Logs
 logs
 *.log
@@ -110,3 +110,5 @@ typings/
 
 userdata/
 userdata
+*.zip
+*.gz

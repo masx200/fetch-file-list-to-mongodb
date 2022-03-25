@@ -28,6 +28,10 @@ https://github.com/masx200/mongodb-file-find-md5-repeat
 yarn global add @masx200/fetch-file-list-to-mongodb
 ```
 
+# 使用准备
+
+先使用`@masx200/fetch-baidu-pan-files-api`登陆保存一下`cookie`
+
 ## 安装 `node_modules`
 
 ```shell

@@ -30,7 +30,8 @@ export default defineConfig([
             file: "./dist/cli.js",
             format: "esm",
         },
-    },  {
+    },
+    {
         external: rollupExternalModules,
         input: "./lib/index.ts",
         plugins,
