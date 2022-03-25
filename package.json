@@ -20,7 +20,7 @@
     "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
     "dependencies": {
         "@masx200/async-task-current-limiter": "^1.0.9",
-        "@masx200/fetch-baidu-pan-files-api": "2.1.4",
+        "@masx200/fetch-baidu-pan-files-api": "^3.0.0",
         "@masx200/mini-cli-args-parser": "^1.0.4",
         "@rollup/plugin-json": "^4.1.0",
         "@types/btoa": "^1.2.3",
@@ -52,5 +52,8 @@
     "bugs": {
         "url": "https://github.com/masx200/fetch-pan-file-list-mongodb/issues"
     },
-    "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme","resolutions":{"mpath":"0.8.4"}
+    "homepage": "https://github.com/masx200/fetch-pan-file-list-mongodb#readme",
+    "resolutions": {
+        "mpath": "0.8.4"
+    }
 }
