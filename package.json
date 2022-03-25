@@ -1,17 +1,21 @@
 {
+    "files": [
+        "dist"
+    ],
     "publishConfig": {
         "access": "public",
         "registry": "https://registry.npmjs.com"
     },
     "bin": "./dist/cli.js",
-    "types": "lib/index.d.ts",
+    "types": "dist/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "1.2.7",
-    "main": "dist/index.js",
+    "version": "2.0.0",
+    "main": "dist/index.cjs",
+    "module": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "build": "rollup -c rollup.config.js ",
+        "build": "rollup -c rollup.config.mjs ",
         "start": "node  ./dist/cli.js",
         "format": "prettier ./lib/*.ts *.json *.md --write **/*.js"
     },
@@ -20,7 +24,7 @@
     "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
     "dependencies": {
         "@masx200/async-task-current-limiter": "^1.0.9",
-        "@masx200/fetch-baidu-pan-files-api": "^3.0.1",
+        "@masx200/fetch-baidu-pan-files-api": "^3.0.2",
         "@masx200/mini-cli-args-parser": "^1.0.4",
         "@rollup/plugin-json": "^4.1.0",
         "@types/btoa": "^1.2.3",

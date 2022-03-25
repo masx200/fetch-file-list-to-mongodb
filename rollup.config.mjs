@@ -35,11 +35,19 @@ export default defineConfig([
         external: rollupExternalModules,
         input: "./lib/index.ts",
         plugins,
-        output: {
-            // banner,
-            sourcemap: true,
-            file: "./dist/index.js",
-            format: "esm",
-        },
+        output: [
+            {
+                // banner,
+                sourcemap: true,
+                file: "./dist/index.js",
+                format: "esm",
+            },
+            {
+                // banner,
+                sourcemap: true,
+                file: "./dist/index.cjs",
+                format: "cjs",
+            },
+        ],
     },
 ]);
