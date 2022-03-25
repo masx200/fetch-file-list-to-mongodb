@@ -2,7 +2,7 @@
     "include": ["*.ts", "./**/*.ts", "lib"],
     "compilerOptions": {
         "skipDefaultLibCheck": true,
-        "skipLibCheck": false,
+        "skipLibCheck": true,
         "strictNullChecks": true,
         "alwaysStrict": true,
         "allowUnreachableCode": false,
