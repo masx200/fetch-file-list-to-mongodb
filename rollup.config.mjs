@@ -18,7 +18,13 @@ const terserplugin = terser({
     output: { comments: false, beautify: true },
 });
 const banner = `#!/usr/bin/env node`;
-const plugins = [resolve(), commonjs(), ts(), json(), terserplugin];
+const plugins = [
+    resolve(),
+    commonjs(),
+    ts({ transpiler: "typescript" }),
+    json(),
+    terserplugin,
+];
 export default defineConfig([
     {
         external: rollupExternalModules,
