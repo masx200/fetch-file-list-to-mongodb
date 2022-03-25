@@ -4,7 +4,7 @@
     ],
     "publishConfig": {
         "access": "public",
-        "registry": "https://registry.npmjs.com"
+        "registry": "https://registry.npmjs.org"
     },
     "bin": "./dist/cli.js",
     "types": "dist/index.d.ts",
