@@ -16,7 +16,7 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
     "license": "MIT",
