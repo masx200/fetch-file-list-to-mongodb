@@ -29,7 +29,7 @@
     "author": "masx200 <34191203+masx200@users.noreply.github.com>",
     "description": "获取百度网盘所有文件信息保存到MongoDB数据库的脚本",
     "dependencies": {
-        "@masx200/async-task-current-limiter": "^2.0.0",
+        "@masx200/async-task-current-limiter": "^2.0.1",
         "@masx200/fetch-baidu-pan-files-api": "^3.0.5",
         "@masx200/mini-cli-args-parser": "^1.0.5",
         "@rollup/plugin-json": "^4.1.0",
