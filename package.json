@@ -16,12 +16,12 @@
     "types": "dist/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
-    "version": "2.0.3",
+    "version": "2.0.4",
     "main": "dist/index.cjs",
     "module": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "clean":"mongo  mongodb://127.0.0.1:27017/baidupan ./mongo/clean.js",
+        "clean": "mongo  mongodb://127.0.0.1:27017/baidupan ./mongo/clean.js",
         "build": "rollup -c rollup.config.mjs ",
         "start": "node  ./dist/cli.js",
         "format": "prettier ./lib/*.ts *.json *.md --write **/*.js"
