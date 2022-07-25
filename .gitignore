@@ -112,3 +112,4 @@ userdata/
 userdata
 *.zip
 *.gz
+.vscode/settings.json
