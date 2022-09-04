@@ -51,7 +51,7 @@ typings/
 
 # TypeScript cache
 *.tsbuildinfo
-
+yarn.lock
 # Optional npm cache directory
 .npm
 
