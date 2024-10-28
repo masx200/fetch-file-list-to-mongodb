@@ -12,7 +12,9 @@
         "access": "public",
         "registry": "https://registry.npmjs.org"
     },
-    "bin": "./dist/cli.js",
+    "bin": {
+        "fetch-file-list-to-mongodb": "dist/cli.js"
+    },
     "types": "dist/index.d.ts",
     "type": "module",
     "name": "@masx200/fetch-file-list-to-mongodb",
