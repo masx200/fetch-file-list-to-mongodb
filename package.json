@@ -51,7 +51,7 @@
         "btoa": "^1.2.1",
         "mquery": "3.2.5",
         "prettier": "^2.7.1",
-        "rollup": "^2.77.0",
+        "rollup": "^4.24.2",
         "rollup-external-modules": "^2.0.0",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-ts": "^3.0.2",
