@@ -46,7 +46,7 @@
         "@rollup/plugin-node-resolve": "^13.3.0",
         "@types/btoa": "^1.2.3",
         "@types/cookie": "^0.6.0",
-        "@types/fs-extra": "^9.0.11",
+        "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.8.1",
         "btoa": "^1.2.1",
         "mquery": "3.2.5",
