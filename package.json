@@ -49,7 +49,7 @@
         "@types/fs-extra": "^9.0.11",
         "@types/node": "^22.8.1",
         "btoa": "^1.2.1",
-        "mquery": "3.2.5",
+        "mquery": "5.0.0",
         "prettier": "^2.7.1",
         "rollup": "^2.77.0",
         "rollup-external-modules": "^2.0.0",
