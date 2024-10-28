@@ -7,13 +7,13 @@ import { start } from "./start.js";
 const args = parseargs(process.argv.slice(2));
 console.log(args);
 if (args["collect"]) {
-    opts.collect = args["collect"];
+    opts.collect = String(args["collect"]);
 }
 if (args["mongourl"]) {
-    opts.mongourl = args["mongourl"];
+    opts.mongourl = String(args["mongourl"]);
 }
 if (args["db"]) {
-    opts.db = args["db"];
+    opts.db = String(args["db"]);
 }
 console.log(opts);
 start();
