@@ -43,7 +43,7 @@
     "devDependencies": {
         "@rollup/plugin-commonjs": "^28.0.1",
         "@rollup/plugin-json": "^6.1.0",
-        "@rollup/plugin-node-resolve": "^15.3.0",
+        "@rollup/plugin-node-resolve": "^16.0.0",
         "@types/btoa": "^1.2.3",
         "@types/cookie": "^1.0.0",
         "@types/fs-extra": "^11.0.4",
